@@ -110,4 +110,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-Created by [Your Name] - Feel free to contact me!
+Created by J1cky - Feel free to contact me!
