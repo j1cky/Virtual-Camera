@@ -39,62 +39,69 @@ This allows you to use the virtual camera as an input in applications like Chrom
 
 ## **Installation**
 
-### Step 1: Install Dependencies
+### Step 1: Clone this Repository
+   ```bash
+   git clone git@github.com:j1cky/Virtual-Camera.git
+   cd Virtual-Camera
+   ```
+
+### Step 2: Create and activate a virtual environment:
 
  ```bash
- sudo apt update
- sudo apt install v4l2loopback-utils ffmpeg python3-opencv python3-pip
- pip install pyvirtualcam
+ python3 -m venv .venv
+ source .venv/bin/activate  # For Linux/Mac
+ .venv\Scripts\activate     # For Windows
+ ``` 
+
+### Step 3: Install Dependencies
+
+**System Dependencies:**
+
+   First, update your package list and install essential system packages:
+   ```bash
+   sudo apt update
+   sudo apt install v4l2loopback-utils ffmpeg python3-opencv python3-pip
+   ```
+
+**Python Dependencies:**
+
+ To install Python dependencies, ensure you are in a virtual environment (recommended), to create a virtual environment:
+ ```bash
+ python3 -m venv venv
+ source venv/bin/activate
  ```
-
-### Step 2: Load the v4l2loopback Kernel Module
-
-```bash
-sudo modprobe v4l2loopback devices=1 video_nr=7 card_label="VirtualCamera" exclusive_caps=1
-```
-
-### Step 3: Clone this Repository
-
-```bash
-git clone git@github.com:j1cky/Virtual-Camera.git
-cd Virtual-Camera
-```
+ then use `requirements.txt` to install dependencies :
+ ```bash
+ pip install -r requirements.txt
+ ```
 
 ## **Usage**
 
-1. **Run the Script**
+**Run the Script**
    
-   Execute the script to start streaming video from your real camera to the virtual camera:
+ Execute the script to start streaming video from your real camera to the virtual camera:
 
-   ```bash
-   python3 vcam.py
-   ```
+ ```bash
+ python3 vcam.py
+ ```
 
-2. **Use the Virtual Camera in Applications**
+**Use the Virtual Camera in Applications**
 
-   Open Chrome or any other application that uses a webcam. 
-   Select "VirtualCamera" as the video input source.
+ Open Chrome or any other application that uses a webcam. 
+
+ Select "VirtualCamera" as the video input source.
 
 ## **Code Structure**
 
 - `vcam.py`: Main script for capturing and streaming video.
 
-### Example
-
-The script applies a simple grayscale filter to the video. You can customize the processing step in the script:
-
-```python
-# Grayscale conversion
-gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-gray_rgb = cv2.cvtColor(gray_frame, cv2.COLOR_GRAY2BGR)
-```
 
 ### Stopping the Virtual Camera
 
-To unload the virtual camera, run:
+To stop and unload the virtual camera, run:
 
 ```bash
-sudo rmmod v4l2loopback
+ctrl+C
 ```
 
 ## **Troubleshooting**
